@@ -2,12 +2,12 @@
 " Author: Andrew Kingery 
 " Version: 0.1
 
-function! DrawStrings() 
+function! DrawStrings(length) 
     for @s in ['e', 'B', 'G', 'D', 'A', 'E']
-        execute "normal! i\<C-R>s|\<C-o>50a-\<esc>o"
+        execute "normal! i\<C-R>s|\<C-o>". a:length. "a-\<esc>o"
     endfor
     " reset position
     normal! ggl 
 endfunction
 
-autocmd BufNewFile *.tab call DrawStrings()
+autocmd BufNewFile *.tab call DrawStrings(50)
