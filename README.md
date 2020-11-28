@@ -1,7 +1,11 @@
-VimTabs: A Vim Plugin for Writing Guitar Tablature
+Vim-tabs: A Vim Plugin for Writing Guitar Tablature
 ==================================================
 
-VimTabs is a plugin for Vim that makes writing guitar tablature easier. 
+Vim-tabs is a plugin for Vim that makes writing guitar tablature easier. 
+
+Installation
+------------
+You can install vim-tabs using [vim-plug](https://github.com/junegunn/vim-plug) by adding `Plug 'kanderoo/vim-tabs'` to your vimrc and running `:PlugInstall`. Installation using Pathogen or Vundle might be possible, but I don't use those so I'm not sure.
 
 How to Write Tab
 ---------------------
