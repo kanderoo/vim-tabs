@@ -72,6 +72,9 @@ for c in keys(g:Chords)
     execute "nnoremap <localleader>". c." :call <SID>Chord(\"". c. "\")<CR>"
 endfor
 
+" replace the column with | and jump back vith ^o
+nnoremap <expr> <localleader>\| <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5jr\|<C-[><C-o>':''
+
 " selections
 nnoremap <expr> <S-v> <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5j':'<S-v>'
 nmap <expr> yy <SID>OnStringLine() ? 'mm<S-v>y`m':'yy'
