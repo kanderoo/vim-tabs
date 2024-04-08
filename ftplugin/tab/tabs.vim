@@ -17,7 +17,7 @@ function! s:InitTab(length)
     startinsert
 endfunction
 
-function! s:DrawStrings(length) 
+function! tabs#DrawStrings(length)
     for @s in s:tuning
         execute "normal! i\<C-R>s|\<C-o>". a:length. "a-\<esc>a|\<esc>o"
     endfor
