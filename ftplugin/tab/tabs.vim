@@ -31,6 +31,10 @@ function! s:OnStringChar()
     return s:OnStringLine() && getline('.')[col('.')-1] == "-" 
 endfunction
 
+function! s:OnFirstLine()
+    return getline('.')[0:1] == s:tuning[0]."|"
+endfunction
+
 function! s:HyphenDelete(type)
     silent execute "normal! `[v`]r-"
 endfunction
@@ -42,6 +46,9 @@ endfunction
 
 function! s:ToFirstLine()
     noh
+    if s:OnFirstLine()
+        return
+    endif
     execute "normal! ?". s:tuning[0]. "?s+". (col(".")-1). "\<CR>"
 endfunction
 
