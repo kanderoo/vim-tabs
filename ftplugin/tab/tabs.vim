@@ -11,7 +11,7 @@ let s:tuning=['e', 'B', 'G', 'D', 'A', 'E']
 
 function! s:InitTab(length)
     execute "normal! i[]\<CR>\<CR>" 
-    call s:DrawStrings(a:length)
+    call tabs#DrawStrings(a:length)
     " reset position 
     execute "normal! ggl"
     startinsert
