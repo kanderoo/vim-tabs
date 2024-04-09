@@ -11,13 +11,13 @@ let s:tuning=['e', 'B', 'G', 'D', 'A', 'E']
 
 function! s:InitTab(length)
     execute "normal! i[]\<CR>\<CR>" 
-    call s:DrawStrings(a:length)
+    call tabs#DrawStrings(a:length)
     " reset position 
     execute "normal! ggl"
     startinsert
 endfunction
 
-function! s:DrawStrings(length) 
+function! tabs#DrawStrings(length)
     for @s in s:tuning
         execute "normal! i\<C-R>s|\<C-o>". a:length. "a-\<esc>a|\<esc>o"
     endfor
@@ -31,6 +31,10 @@ function! s:OnStringChar()
     return s:OnStringLine() && getline('.')[col('.')-1] == "-" 
 endfunction
 
+function! s:OnFirstLine()
+    return getline('.')[0:1] == s:tuning[0]."|"
+endfunction
+
 function! s:HyphenDelete(type)
     silent execute "normal! `[v`]r-"
 endfunction
@@ -42,6 +46,9 @@ endfunction
 
 function! s:ToFirstLine()
     noh
+    if s:OnFirstLine()
+        return
+    endif
     execute "normal! ?". s:tuning[0]. "?s+". (col(".")-1). "\<CR>"
 endfunction
 
@@ -64,6 +71,9 @@ let maplocalleader = "-"
 for c in keys(g:Chords)
     execute "nnoremap <localleader>". c." :call <SID>Chord(\"". c. "\")<CR>"
 endfor
+
+" replace the column with | and jump back vith ^o
+nnoremap <expr> <localleader>\| <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5jr\|<C-[><C-o>':''
 
 " selections
 nnoremap <expr> <S-v> <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5j':'<S-v>'
