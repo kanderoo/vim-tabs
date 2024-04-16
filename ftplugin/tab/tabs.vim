@@ -10,16 +10,16 @@ let g:loaded_VimTabs = 1
 let s:tuning=['e', 'B', 'G', 'D', 'A', 'E']
 
 function! s:InitTab(length)
-    execute "normal! i[]\<CR>\<CR>" 
+    silent execute "normal! i[]\<CR>\<CR>" 
     call tabs#DrawStrings(a:length)
     " reset position 
-    execute "normal! ggl"
+    silent execute "normal! ggl"
     startinsert
 endfunction
 
 function! tabs#DrawStrings(length)
     for @s in s:tuning
-        execute "normal! i\<C-R>s|\<C-o>". a:length. "a-\<esc>a|\<esc>o"
+        silent execute "normal! i\<C-R>s|\<C-o>". a:length. "a-\<esc>a|\<esc>o"
     endfor
 endfunction
 
@@ -49,17 +49,17 @@ function! s:ToFirstLine()
     if s:OnFirstLine()
         return
     endif
-    execute "normal! ?". s:tuning[0]. "?s+". (col(".")-1). "\<CR>"
+    silent execute "normal! ?". s:tuning[0]. "?s+". (col(".")-1). "\<CR>"
 endfunction
 
 function! s:Chord(Letter)
     normal mm
     call s:ToFirstLine()
     set ve=all
-    execute "normal! kR". a:Letter. "\<esc>j" 
+    silent execute "normal! kR". a:Letter. "\<esc>j" 
     set ve=
     for @r in g:Chords[a:Letter]
-        execute "normal! s\<C-R>r\<esc>j"
+        silent execute "normal! s\<C-R>r\<esc>j"
     endfor
     normal `m
 endfunction
@@ -69,7 +69,7 @@ endfunction
 " chord completion
 let maplocalleader = "-"
 for c in keys(g:Chords)
-    execute "nnoremap <localleader>". c." :call <SID>Chord(\"". c. "\")<CR>"
+    silent execute "nnoremap <localleader>". c." :call <SID>Chord(\"". c. "\")<CR>"
 endfor
 
 " replace the column with | and jump back vith ^o
