@@ -23,6 +23,15 @@ function! tabs#DrawStrings(length)
     endfor
 endfunction
 
+function! tabs#DrawBars()
+    let l:jump_back = s:OnFirstLine()
+    call s:ToFirstLine()
+    silent execute "normal! \<C-v>5jr|"
+    if !l:jump_back
+        silent execute "normal! \<C-o>"
+    endif
+endfunction
+
 function! s:OnStringLine()
     return getline(line('.')) =~ "^[a-gA-G]\|.*-*.*" 
 endfunction
@@ -73,7 +82,7 @@ for c in keys(g:Chords)
 endfor
 
 " replace the column with | and jump back vith ^o
-nnoremap <expr> <localleader>\| <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5jr\|<C-[><C-o>':''
+nnoremap <silent> <expr> <localleader>\| <SID>OnStringLine() ? ':call tabs#DrawBars()<CR>':''
 
 " selections
 nnoremap <expr> <S-v> <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5j':'<S-v>'
