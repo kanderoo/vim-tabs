@@ -1,5 +1,5 @@
 " VimTabs.vim - A vim plugin for writing guitar tablature
-" Author: Andrew Kingery 
+" Author: Andrew Kingery
 " Version: 0.2
 
 if exists("g:loaded_VimTabs")
@@ -10,9 +10,9 @@ let g:loaded_VimTabs = 1
 let s:tuning=['e', 'B', 'G', 'D', 'A', 'E']
 
 function! s:InitTab(length)
-    silent execute "normal! i[]\<CR>\<CR>" 
+    silent execute "normal! i[]\<CR>\<CR>"
     call tabs#DrawStrings(a:length)
-    " reset position 
+    " reset position
     silent execute "normal! ggl"
     startinsert
 endfunction
@@ -33,11 +33,11 @@ function! tabs#DrawBars()
 endfunction
 
 function! s:OnStringLine()
-    return getline(line('.')) =~ "^[a-gA-G]\|.*-*.*" 
+    return getline(line('.')) =~ "^[a-gA-G]\|.*-*.*"
 endfunction
 
 function! s:OnStringChar()
-    return s:OnStringLine() && getline('.')[col('.')-1] == "-" 
+    return s:OnStringLine() && getline('.')[col('.')-1] == "-"
 endfunction
 
 function! s:OnFirstLine()
@@ -65,7 +65,7 @@ function! s:Chord(Letter)
     normal mm
     call s:ToFirstLine()
     set ve=all
-    silent execute "normal! kR". a:Letter. "\<esc>j" 
+    silent execute "normal! kR". a:Letter. "\<esc>j"
     set ve=
     for @r in g:Chords[a:Letter]
         silent execute "normal! s\<C-R>r\<esc>j"
