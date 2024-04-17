@@ -81,8 +81,9 @@ for c in keys(g:Chords)
     silent execute "nnoremap <localleader>". c." :call <SID>Chord(\"". c. "\")<CR>"
 endfor
 
-" replace the column with | and jump back vith ^o
+" Mapping to draw bars with -| in normal mode and | in insert/replace mode
 nnoremap <silent> <expr> <localleader>\| <SID>OnStringLine() ? ':call tabs#DrawBars()<CR>':''
+inoremap <silent> <expr> \| <SID>OnStringLine() ? '<esc>l:call tabs#DrawBars()<CR>lgR':'\|'
 
 " selections
 nnoremap <expr> <S-v> <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5j':'<S-v>'
