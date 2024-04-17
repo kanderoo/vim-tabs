@@ -89,8 +89,8 @@ nnoremap <expr> <S-v> <SID>OnStringLine() ? ':call <SID>ToFirstLine()<CR><C-v>5j
 nmap <expr> yy <SID>OnStringLine() ? 'mm<S-v>y`m':'yy'
 
 " movement
-inoremap <expr> <Tab> <SID>OnStringLine() ? '<esc>jgR':'<Tab>'
-inoremap <expr> <S-Tab> <SID>OnStringLine() ? '<esc>kgR':'<Tab>'
+inoremap <expr> <Tab> <SID>OnStringLine() ? '<esc>jlgR':'<Tab>'
+inoremap <expr> <S-Tab> <SID>OnStringLine() ? '<esc>klgR':'<Tab>'
 
 " map insert mode to Replace mode if cursor on a string line
 nnoremap <expr> i <SID>OnStringChar() ? 'gR':'i'
