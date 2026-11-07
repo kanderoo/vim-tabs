@@ -11,14 +11,14 @@ let s:tuning = ['e', 'B', 'G', 'D', 'A', 'E']
 
 function! s:InitTab(length)
     call setline(1, ['[]', ''])
-    call tabs#DrawStrings(2, a:length)
+    call s:DrawStrings(2, a:length)
     call append('$', '')
     call cursor(1, 2)
     startinsert
 endfunction
 
 " Appends a staff of length hyphens per string after line lnum.
-function! tabs#DrawStrings(lnum, length)
+function! s:DrawStrings(lnum, length)
     let l:line = '|' . repeat('-', a:length) . '|'
     call append(a:lnum, map(copy(s:tuning), 'v:val . l:line'))
 endfunction
@@ -35,7 +35,7 @@ function! s:NewStaff(length)
     let l:above = s:CountBlank(l:after, -1)
     let l:below = s:CountBlank(l:after + 1, 1)
     call append(l:after, repeat([''], 2 - l:below))
-    call tabs#DrawStrings(l:after, a:length)
+    call s:DrawStrings(l:after, a:length)
     call append(l:after, repeat([''], 2 - l:above))
     call cursor(l:after + 2 - l:above + 1, 3)
     startgreplace
@@ -51,7 +51,7 @@ function! s:CountBlank(lnum, step)
     return l:n
 endfunction
 
-function! tabs#DrawBars()
+function! s:DrawBars()
     let l:pos = getcurpos()
     call s:ToFirstLine()
     silent execute "normal! \<C-v>5jr|"
@@ -246,8 +246,8 @@ for s:c in keys(g:Chords)
 endfor
 
 " Mapping to draw bars with -| in normal mode and | in insert/replace mode
-nnoremap <buffer> <silent> <expr> <localleader><Bar> <SID>OnStringLine() ? ':<C-u>call tabs#DrawBars()<CR>' : ''
-inoremap <buffer> <silent> <expr> <Bar> <SID>OnStringLine() ? '<C-\><C-o>:<C-u>call tabs#DrawBars()<CR><Right>' : '<Bar>'
+nnoremap <buffer> <silent> <expr> <localleader><Bar> <SID>OnStringLine() ? ':<C-u>call <SID>DrawBars()<CR>' : ''
+inoremap <buffer> <silent> <expr> <Bar> <SID>OnStringLine() ? '<C-\><C-o>:<C-u>call <SID>DrawBars()<CR><Right>' : '<Bar>'
 
 " [count]-<CR> adds a staff, count hyphens wide
 nnoremap <buffer> <silent> <localleader><CR> :<C-u>call <SID>NewStaff(v:count ? v:count : 60)<CR>
