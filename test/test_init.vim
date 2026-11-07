@@ -1,5 +1,5 @@
 function! Test_empty_buffer_gets_a_staff()
-    setfiletype tab
+    setfiletype tabs
     let l:want =<< trim END
         []
 

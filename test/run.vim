@@ -59,7 +59,7 @@ END
 " Reads the lines to the "current buffer"
 function! Given(lines, lnum, col)
     call setline(1, a:lines)
-    setfiletype tab
+    setfiletype tabs
     call cursor(a:lnum, a:col)
 endfunction
 

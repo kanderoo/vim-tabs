@@ -13,7 +13,7 @@ The plugin needs Vim 8.0 or newer. Once installed, `:help tabs` opens this docum
 Getting Started
 ---------------
 
-The plugin activates on files with the `.tab` extension. When you open a new (not yet saved) `.tab` file, it creates a blank tab for you: a `[]` title placeholder on the first line and six string lines in standard tuning, 60 columns wide:
+The plugin activates on files with the `.tab` extension and sets their filetype to `tabs`, which you can use in your own `FileType` autocommands. When you open a new (not yet saved) `.tab` file, it creates a blank tab for you: a `[]` title placeholder on the first line and six string lines in standard tuning, 60 columns wide:
 
 ```
 []
@@ -117,21 +117,21 @@ Highlighting
 
 Only string lines and the chord names right above a staff get tab highlighting, so lyrics and comments stay plain. Each part has its own syntax group, linked to a standard one:
 
-- `tabName`, the string name before the first bar: `Identifier`.
-- `tabBar`, the bars: `Delimiter`.
-- `tabHyphen`, the hyphens: `Comment`.
-- `tabFret`, the fret numbers: `Number`.
-- `tabTechnique`, slides `/` and `\`, hammer ons `h`, pull offs `p`, bends `b`, releases `r`, taps `t` and vibrato `~`: `Operator`.
-- `tabMute`, dead notes `x`: `Special`.
-- `tabHarmonic`, harmonics like `<12>`: `Special`.
-- `tabChord`, chord names like `Am`, `C7`, `Emaj7`, `F#m7b5` or `C/G` on a line right above a staff: `SpecialComment`.
-- `tabHeader`, the `[title]` line: `Title`.
+- `tabsName`, the string name before the first bar: `Identifier`.
+- `tabsBar`, the bars: `Delimiter`.
+- `tabsHyphen`, the hyphens: `Comment`.
+- `tabsFret`, the fret numbers: `Number`.
+- `tabsTechnique`, slides `/` and `\`, hammer ons `h`, pull offs `p`, bends `b`, releases `r`, taps `t` and vibrato `~`: `Operator`.
+- `tabsMute`, dead notes `x`: `Special`.
+- `tabsHarmonic`, harmonics like `<12>`: `Special`.
+- `tabsChord`, chord names like `Am`, `C7`, `Emaj7`, `F#m7b5` or `C/G` on a line right above a staff: `SpecialComment`.
+- `tabsHeader`, the `[title]` line: `Title`.
 
 To change a color, link the group to another one or give it your own colors in your vimrc, after the `:colorscheme` line:
 
 ```vim
-highlight link tabHyphen NonText
-highlight tabFret ctermfg=yellow guifg=#e5c07b
+highlight link tabsHyphen NonText
+highlight tabsFret ctermfg=yellow guifg=#e5c07b
 ```
 
 Turning the Plugin Off
