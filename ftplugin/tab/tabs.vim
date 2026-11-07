@@ -182,7 +182,7 @@ function! s:Chord(Letter)
     finally
         let &l:virtualedit = l:ve
     endtry
-    for l:fret in g:Chords[a:Letter]
+    for l:fret in g:tabs_chords[a:Letter]
         silent execute 'normal! "_s' . l:fret . "\<Esc>j"
     endfor
     call setpos('.', l:pos)
@@ -241,7 +241,7 @@ if s:set_leader
     let maplocalleader = '-'
 endif
 " chord completion
-for s:c in keys(g:Chords)
+for s:c in keys(g:tabs_chords)
     execute 'nnoremap <buffer> <silent> <localleader>' . s:c . ' :<C-u>call <SID>Chord(' . string(s:c) . ')<CR>'
 endfor
 

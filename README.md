@@ -99,18 +99,18 @@ Built in chords:
 
 When one chord name starts another, like `A`, `Am` and `Am7`, Vim waits for 'timeoutlen' after `-A` or `-Am` to see whether you type more.
 
-### The `g:Chords` option
+### The `g:tabs_chords` option
 
-Add your own chords by setting `g:Chords` in your vimrc. Each entry lists the frets from the high e string downward; strings you leave out stay unplayed:
+Add your own chords by setting `g:tabs_chords` in your vimrc. Each entry lists the frets from the high e string downward; strings you leave out stay unplayed:
 
 ```vim
-let g:Chords = {
+let g:tabs_chords = {
 \    'Asus4': ['0', '3', '2', '2', '0'],
 \    'C':     ['3', '1', '0', '2', '3'],
 \}
 ```
 
-Your chords are added to the built in ones and win when the names match, like `C` above. The plugin reads `g:Chords` each time it opens a `.tab` file, so your vimrc is the right place for it.
+Your chords are added to the built in ones and win when the names match, like `C` above. The plugin reads `g:tabs_chords` each time it opens a `.tab` file, so your vimrc is the right place for it.
 
 Highlighting
 ------------

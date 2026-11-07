@@ -34,14 +34,14 @@ function! Test_chord_pads_short_strings()
 endfunction
 
 function! Test_user_chords_extend_defaults()
-    let g:Chords = {'X': ['9']}
+    let g:tabs_chords = {'X': ['9']}
     try
         call Given(g:blank, 3, 4)
         call Keys('-X')
         call cursor(3, 8)
         call Keys('-G')
     finally
-        unlet g:Chords
+        unlet g:tabs_chords
     endtry
     let l:want =<< trim END
         []

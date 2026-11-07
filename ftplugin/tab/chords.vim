@@ -28,4 +28,4 @@ let s:defaults = {
 \    'Fm7':['1', '1', '1', '1', '3', '1'],
 \    'Gm7':['3', '3', '3', '3', '5', '3'],
 \}
-let g:Chords = extend(get(g:, 'Chords', {}), s:defaults, 'keep')
+let g:tabs_chords = extend(get(g:, 'tabs_chords', {}), s:defaults, 'keep')
